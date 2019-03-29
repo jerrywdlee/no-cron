@@ -1,0 +1,11 @@
+{
+  "name": "no-cron",
+  "version": "0.0.1",
+  "description": "A node.js based fake cron",
+  "main": "cron.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jerry Lee",
+  "license": "ISC"
+}
