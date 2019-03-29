@@ -9,6 +9,7 @@
   "author": "Jerry Lee",
   "license": "ISC",
   "dependencies": {
+    "commander": "^2.19.0",
     "cron": "^1.7.0"
   }
 }
