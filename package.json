@@ -1,6 +1,10 @@
 {
   "name": "no-cron",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerrywdlee/no-cron"
+  },
   "description": "A node.js based fake cron",
   "main": "cron.js",
   "scripts": {
