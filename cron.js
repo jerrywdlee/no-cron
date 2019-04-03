@@ -7,6 +7,7 @@ const { promisify } = require('util')
 const exa = promisify(exec)
 const argv = require('./lib/argv')
 
+const timeoutSec = argv.timeout || process.env['NO_CRON_TIMEOUT'] || 90
 let cronText = ''
 
 if (argv.file) {
@@ -52,7 +53,7 @@ const jobs = cronJobs.map(cronJob => {
     console.log(cond, cmd)
     return new CronJob(cond, async () => {
       try {
-        await exa(cmd)
+        await exa(cmd, { timeout: timeoutSec * 1000 })
       } catch (error) {
         console.error(error)
       }
