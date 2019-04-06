@@ -29,3 +29,10 @@ $ pm2 start cron.js -- -f my_cron.txt
 ## Known issues
 
 - Errors when execute node.js scripts in a different version of node.js
+
+## LICENSE
+This project is under **[Anti 996 License & Mozilla Public License](https://github.com/jerrywdlee/no-cron/blob/master/LICENSE)**.  
+
+Click here for more info about **[Anti 996 Project](https://996.icu/#/en_US)**.
+
+Copyright (c) 2019 Jerry Lee
