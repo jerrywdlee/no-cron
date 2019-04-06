@@ -22,7 +22,7 @@ class CronJobs {
   }
 
   init() {
-    let cronText
+    let cronText = ''
     if (this.cronText) {
       cronText = this.cronText
     } else if (this.fileName) {
@@ -34,7 +34,12 @@ class CronJobs {
         this.exit(1)
       }
     } else {
-      cronText = execSync('crontab -l').toString()
+      try {
+        cronText = execSync('crontab -l').toString()
+      } catch (e) {
+        console.error(`No crontab found`)
+        this.exit(1)
+      }
     }
 
     const cronWithCmds = []

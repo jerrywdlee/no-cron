@@ -15,7 +15,7 @@ describe('Test CronJobs', () => {
   })
 
   test('Should create CronJobs instance', async () => {
-    const jobs = new CronJobs()
+    const jobs = new CronJobs({ cronText: '' })
     expect(jobs).not.toBeUndefined()
   })
 
