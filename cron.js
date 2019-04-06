@@ -13,10 +13,18 @@ class CronJobs {
     } else {
       this.exit = opt.exit
     }
-    const timeoutSec = opt.timeout || process['env']['NO_CRON_TIMEOUT'] || 90
-    let cronText = ''
-    if (opt.file) {
-      const fileName = opt.file
+    this.timeoutSec = opt.timeout || process['env']['NO_CRON_TIMEOUT'] || 90
+    this.cronText = opt.cronText
+    this.fileName = opt.file
+    this.init()
+  }
+
+  init() {
+    let cronText
+    if (this.cronText) {
+      cronText = this.cronText
+    } else if (this.fileName) {
+      const fileName = this.fileName
       if (existsSync(fileName)) {
         cronText = readFileSync(fileName, 'utf8')
       } else {
@@ -27,45 +35,35 @@ class CronJobs {
       cronText = execSync('crontab -l').toString()
     }
 
-    let cronJobs = []
+    const cronWithCmds = []
     cronText.split(/\r\n|\r|\n/).forEach(line => {
       const splitedLine = line.split(/\s/)// .map(w => w.trim())
-      if (splitedLine[5]) {
-        // cron syntax like `* * * * * *`
-        const cronTimeStr = splitedLine.slice(0, 6).join(' ')
-        const cmd = parseCronLine(cronTimeStr, line)
-        if (cmd) {
-          cronJobs.push([cronTimeStr, cmd])
-          return
-        }
-      }
-      if (splitedLine[4]) {
-        // cron syntax like `* * * * *`
-        const cronTimeStr = splitedLine.slice(0, 5).join(' ')
-        const cmd = parseCronLine(cronTimeStr, line)
-        if (cmd) {
-          cronJobs.push([cronTimeStr, cmd])
-          return
+      // cron syntax like `* * * * *` or `* * * * * *`
+      for (const len of [5, 6]) {
+        if (splitedLine[len - 1]) {
+          const cronAndCmd = lineToCornCmd(line, splitedLine, len)
+          if (cronAndCmd) {
+            cronWithCmds.push(cronAndCmd)
+            return
+          }
         }
       }
     })
 
-    const jobs = cronJobs.map(cronJob => {
-      const [cond, cmd] = cronJob
+    const jobs = cronWithCmds.map(cnc => {
+      const [cond, cmd] = cnc
       if (cond && cmd) {
-        // FOR DEBUG:
-        console.log(cond, cmd)
         return new CronJob(cond, async () => {
           try {
-            await exa(cmd, { timeout: timeoutSec * 1000 })
+            await exa(cmd, { timeout: this.timeoutSec * 1000 })
           } catch (error) {
             console.error(error)
           }
         })
       }
     }).filter(c => c)
-    this.timeoutSec = timeoutSec
-    this.cronJobs = cronJobs
+
+    this.cronWithCmds = cronWithCmds
     this.jobs = jobs
   }
 
@@ -74,7 +72,7 @@ class CronJobs {
     jobs.forEach(j => j.start())
     if (jobs.length > 0) {
       const time = new Date().toString()
-      console.log(`\n${jobs.length} cron job(s) started at: ${time}.`)
+      console.log(`${jobs.length} cron job(s) started at: ${time}.`)
     } else {
       console.log('No cron job found!')
       this.exit(2)
@@ -86,6 +84,12 @@ class CronJobs {
     jobs.forEach(j => j.stop())
     console.log(`${jobs.length} cron job(s) stoped.`)
   }
+
+  restart() {
+    this.stop()
+    this.init()
+    this.start()
+  }
 }
 
 function parseCronLine(cronTimeStr, line) {
@@ -96,11 +100,21 @@ function parseCronLine(cronTimeStr, line) {
   } catch (e) { }
 }
 
+function lineToCornCmd(line, splitedLine, len, from = 0) {
+  const cronTimeStr = splitedLine.slice(from, len).join(' ')
+  const cmd = parseCronLine(cronTimeStr, line)
+  if (cmd) {
+    return [cronTimeStr, cmd]
+  }
+}
+
 module.exports = CronJobs
 
 if (!module.parent) {
   const argv = require('./lib/argv')
   const opt = { ...argv }
   const jobs = new CronJobs(opt)
+  // FOR DEBUG:
+  jobs.cronWithCmds.forEach(cnc => console.log(...cnc))
   jobs.start()
 }
