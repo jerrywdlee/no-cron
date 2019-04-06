@@ -1,5 +1,5 @@
 # This is comment
-* * * * * /bin/bash -l -c 'echo `date` $TEST_CRON_ENV >> ./test_result.log 2>&1'
+* * * * * * /bin/bash -l -c 'echo `date` $TEST_CRON_ENV >> ./test_result.log 2>&1'
 
 */5 * * * * /bin/bash -l -c 'echo `date` $TEST_CRON_ENV >> ./test_result.log 2>&1'
 

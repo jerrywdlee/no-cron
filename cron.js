@@ -16,6 +16,8 @@ class CronJobs {
     this.timeoutSec = opt.timeout || process['env']['NO_CRON_TIMEOUT'] || 90
     this.cronText = opt.cronText
     this.fileName = opt.file
+    this.cronWithCmds = []
+    this.jobs = []
     this.init()
   }
 
@@ -39,7 +41,7 @@ class CronJobs {
     cronText.split(/\r\n|\r|\n/).forEach(line => {
       const splitedLine = line.split(/\s/)// .map(w => w.trim())
       // cron syntax like `* * * * *` or `* * * * * *`
-      for (const len of [5, 6]) {
+      for (const len of [6, 5]) {
         if (splitedLine[len - 1]) {
           const cronAndCmd = lineToCornCmd(line, splitedLine, len)
           if (cronAndCmd) {
