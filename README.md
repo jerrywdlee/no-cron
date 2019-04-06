@@ -1,5 +1,5 @@
 <h1 align="center">no-cron</h1>
-<p align="center">A node.js based fake cron.<p>
+A node.js based fake cron. Will run cron jobs with current environment variables.  
 
 [![CircleCI](https://circleci.com/gh/jerrywdlee/no-cron.svg?style=svg)](https://circleci.com/gh/jerrywdlee/no-cron)
 [![Coverage Status](https://coveralls.io/repos/github/jerrywdlee/no-cron/badge.svg)](https://coveralls.io/github/jerrywdlee/no-cron)
