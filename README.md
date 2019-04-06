@@ -1,5 +1,11 @@
-# no-cron
-A node.js based fake cron.
+<h1 align="center">no-cron</h1>
+<p align="center">A node.js based fake cron.<p>
+
+[![CircleCI](https://circleci.com/gh/jerrywdlee/no-cron.svg?style=svg)](https://circleci.com/gh/jerrywdlee/no-cron)
+[![Coverage Status](https://coveralls.io/repos/github/jerrywdlee/no-cron/badge.svg)](https://coveralls.io/github/jerrywdlee/no-cron)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ccff0672287ccfc884b6/maintainability)](https://codeclimate.com/github/jerrywdlee/no-cron/maintainability)
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 
 ## Usage
 
