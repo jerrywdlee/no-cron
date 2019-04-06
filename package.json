@@ -8,12 +8,16 @@
   "description": "A node.js based fake cron",
   "main": "cron.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --detectOpenHandles --forceExit",
+    "coverage": "npm test -- --coverage"
   },
   "author": "Jerry Lee",
   "license": "MIT",
   "dependencies": {
     "commander": "^2.19.0",
     "cron": "^1.7.0"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1"
   }
 }
