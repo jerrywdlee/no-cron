@@ -27,9 +27,7 @@ describe('Test CronJobs', () => {
   })
 
   test('Should load Cron from file', async () => {
-    const file = 'test_cron.txt'
-    const jobs = new CronJobs({ file })
-
+    const jobs = new CronJobs({ file: 'test_cron.txt' })
     expect(jobs.fileName).toBeTruthy()
     expect(jobs.cronWithCmds.length).toBe(4)
   })

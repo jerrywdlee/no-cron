@@ -1,6 +1,6 @@
 {
   "name": "no-cron",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/jerrywdlee/no-cron"
@@ -12,8 +12,8 @@
     "coverage": "npm test -- --coverage",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls"
   },
-  "author": "Jerry Lee",
-  "license": "MIT",
+  "author": "Jerry Lee <jerrywdlee@gmail.com>",
+  "license": "MPL-2.0",
   "dependencies": {
     "commander": "^2.19.0",
     "cron": "^1.7.0"
