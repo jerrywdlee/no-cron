@@ -1,5 +1,4 @@
 <h1 align="center">no-cron</h1>
-A node.js based fake cron. Will run cron jobs with current environment variables.  
 
 [![CircleCI](https://circleci.com/gh/jerrywdlee/no-cron.svg?style=svg)](https://circleci.com/gh/jerrywdlee/no-cron)
 [![Build Status](https://travis-ci.org/jerrywdlee/no-cron.svg?branch=master)](https://travis-ci.org/jerrywdlee/no-cron)
@@ -8,6 +7,7 @@ A node.js based fake cron. Will run cron jobs with current environment variables
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/jerrywdlee/no-cron/issues)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
+A node.js based fake cron. Will run cron jobs with current environment variables.  
 
 ## Usage
 ### Attention
