@@ -37,10 +37,30 @@ $ pm2 start cron.js
 $ pm2 start cron.js -- -f my_cron.txt
 ```
 
+### Docker usage
+Some docker example in `./docker` directory.
+
+#### Docker
+
+```sh
+$ cd docker
+$ docker build -t no-cron .
+$ docker run no-cron
+```
+
+#### Docker Compose
+
+```sh
+$ cd docker
+$ docker-compose build
+$ docker-compose up
+```
+
 ## Difference between [THE Cron](https://en.wikipedia.org/wiki/Cron)
 The `Crontab` in UNIX/LINUX will run command in an isolated condition. Environment variables such as timezone will be different between cron environment and current environment.
 
-When using time-based job scheduler in *docker containers* most environment variables will not imported to cron's environment.
+When using time-based job scheduler in *docker containers* most environment variables will not imported to cron's environment.  
+PS: Image **[node:10.15.3-alpine](https://hub.docker.com/_/node/)** doesn't have this problem, but **[ruby:2.6.1](https://hub.docker.com/_/ruby)** does.
 
 Thus, most famous container IaaS providers such as **Heroku**, recommend users not to use cron inside containers.
 

@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  no-cron:
+    container_name: no-cron
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    working_dir: /root/no-cron
+    environment:
+      TZ: Asia/Tokyo
+      TEST_CRON_ENV: no-cron
+    # command: /bin/sh -c "tail -f /dev/null"
+    command: /bin/sh -c "pm2 start cron.js && crond -b && tail -10 /root/.pm2/logs/cron-out.log && tail -f /logs/cron.log"
