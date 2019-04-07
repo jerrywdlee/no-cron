@@ -42,36 +42,8 @@ class CronJobs {
       }
     }
 
-    const cronWithCmds = []
-    cronText.split(/\r\n|\r|\n/).forEach(line => {
-      const splitedLine = line.split(/\s+/)// .map(w => w.trim())
-      // cron syntax like `* * * * *` or `* * * * * *`
-      for (const len of [6, 5]) {
-        if (splitedLine[len - 1]) {
-          const cronAndCmd = lineToCornCmd(line, splitedLine, len)
-          if (cronAndCmd) {
-            cronWithCmds.push(cronAndCmd)
-            return
-          }
-        }
-      }
-    })
-
-    const jobs = cronWithCmds.map(cnc => {
-      const [cond, cmd] = cnc
-      if (cond && cmd) {
-        return new CronJob(cond, async () => {
-          try {
-            await exa(cmd, { timeout: this.timeoutSec * 1000 })
-          } catch (error) {
-            console.error(error)
-          }
-        })
-      }
-    }).filter(c => c)
-
-    this.cronWithCmds = cronWithCmds
-    this.jobs = jobs
+    this.cronWithCmds = formCronWithCmds(cronText)
+    this.jobs = cronCmdsToJobs(this.cronWithCmds, this.timeoutSec)
   }
 
   start() {
@@ -115,6 +87,40 @@ function lineToCornCmd(line, splitedLine, len, from = 0) {
     const cmd = line.substring(cmdStartIndex)
     return [cronTimeStr, cmd.trim()]
   }
+}
+
+function formCronWithCmds(cronText) {
+  const cronWithCmds = []
+  cronText.split(/\r\n|\r|\n/).forEach(line => {
+    const splitedLine = line.split(/\s+/)// .map(w => w.trim())
+    // cron syntax like `* * * * *` or `* * * * * *`
+    for (const len of [6, 5]) {
+      if (splitedLine[len - 1]) {
+        const cronAndCmd = lineToCornCmd(line, splitedLine, len)
+        if (cronAndCmd) {
+          cronWithCmds.push(cronAndCmd)
+          return
+        }
+      }
+    }
+  })
+  return cronWithCmds
+}
+
+function cronCmdsToJobs(cronWithCmds, timeoutSec) {
+  const jobs = cronWithCmds.map(cnc => {
+    const [cond, cmd] = cnc
+    if (cond && cmd) {
+      return new CronJob(cond, async () => {
+        try {
+          await exa(cmd, { timeout: timeoutSec * 1000 })
+        } catch (error) {
+          console.error(error)
+        }
+      })
+    }
+  }).filter(c => c)
+  return jobs
 }
 
 module.exports = CronJobs
