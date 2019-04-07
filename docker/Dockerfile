@@ -19,5 +19,9 @@ RUN mkdir -p /logs && touch /logs/cron.log
 RUN echo '* * * * * echo `date` $TEST_CRON_ENV >> /logs/cron.log 2>&1'\
     >> /var/spool/cron/crontabs/root
 
-# CMD /bin/sh -c "pm2 start cron.js && crond -fS"
-CMD /bin/sh -c "pm2 start cron.js && crond -b && tail -10 /root/.pm2/logs/cron-out.log && tail -f /logs/cron.log"
+# Only active system cron
+# CMD /bin/sh -c "crond -b && tail -f /logs/cron.log"
+# Only active no-cron
+# CMD /bin/sh -c "pm2 start cron.js && tail -f /logs/cron.log"
+# Both active system cron and no-cron
+CMD /bin/sh -c "pm2 start cron.js && crond -b && tail -f /logs/cron.log"
