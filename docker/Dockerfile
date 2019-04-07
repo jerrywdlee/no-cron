@@ -4,6 +4,8 @@ RUN set -x && apk update && apk upgrade\
     && apk add --no-cache git tzdata
 
 ENV NODE_ENV production
+ENV TZ Asia/Tokyo
+ENV TEST_CRON_ENV no-cron
 
 WORKDIR /root
 RUN git clone https://github.com/jerrywdlee/no-cron.git
