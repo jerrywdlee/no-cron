@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/jerrywdlee/no-cron.svg?branch=master)](https://travis-ci.org/jerrywdlee/no-cron)
 [![Coverage Status](https://coveralls.io/repos/github/jerrywdlee/no-cron/badge.svg)](https://coveralls.io/github/jerrywdlee/no-cron)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ccff0672287ccfc884b6/maintainability)](https://codeclimate.com/github/jerrywdlee/no-cron/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ccff0672287ccfc884b6/test_coverage)](https://codeclimate.com/github/jerrywdlee/no-cron/test_coverage)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/jerrywdlee/no-cron/issues)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
