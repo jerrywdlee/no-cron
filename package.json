@@ -1,11 +1,17 @@
 {
   "name": "no-cron",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/jerrywdlee/no-cron"
   },
   "description": "A node.js based fake cron",
+  "keywords": [
+    "Anti 996 License",
+    "Cron",
+    "CronJob",
+    "Docker"
+  ],
   "main": "cron.js",
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit",
