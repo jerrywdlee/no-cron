@@ -21,10 +21,11 @@ $ service cron stop
 [FAIL] cron is not running ... failed!
 ```
 
-### Run in cli
+### Run in Foreground
 
 ```sh
 # Need node.js v8+
+$ git clone https://github.com/jerrywdlee/no-cron.git && cd no-cron
 $ npm install
 $ node cron # This will execute cronjobs in system crontab
 $ node cron -f my_cron.txt # Execute cronjobs wrote in a file called `my_cron.txt`
@@ -33,6 +34,7 @@ $ node cron -f my_cron.txt # Execute cronjobs wrote in a file called `my_cron.tx
 Plz install **[pm2](https://github.com/Unitech/pm2)** or **[forever](https://github.com/foreverjs/forever)** to daemonize `no-cron`
 
 ```sh
+$ git clone https://github.com/jerrywdlee/no-cron.git && cd no-cron
 $ npm i && npm i -g pm2
 $ pm2 start cron.js
 # OR

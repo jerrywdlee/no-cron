@@ -9,5 +9,9 @@ services:
     environment:
       TZ: Asia/Tokyo
       TEST_CRON_ENV: no-cron
-    # command: /bin/sh -c "tail -f /dev/null"
-    command: /bin/sh -c "pm2 start cron.js && crond -b && tail -10 /root/.pm2/logs/cron-out.log && tail -f /logs/cron.log"
+    # Only active system cron
+    # command: /bin/sh -c "crond -b && tail -f /logs/cron.log"
+    # Only active no-cron
+    # command: /bin/sh -c "pm2 start cron.js && tail -f /logs/cron.log"
+    # Both active system cron and no-cron
+    command: /bin/sh -c "pm2 start cron.js && crond -b && tail -f /logs/cron.log"
