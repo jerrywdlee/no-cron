@@ -5,6 +5,7 @@ A node.js based fake cron. Will run cron jobs with current environment variables
 [![Build Status](https://travis-ci.org/jerrywdlee/no-cron.svg?branch=master)](https://travis-ci.org/jerrywdlee/no-cron)
 [![Coverage Status](https://coveralls.io/repos/github/jerrywdlee/no-cron/badge.svg)](https://coveralls.io/github/jerrywdlee/no-cron)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ccff0672287ccfc884b6/maintainability)](https://codeclimate.com/github/jerrywdlee/no-cron/maintainability)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/jerrywdlee/no-cron/issues)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
 
