@@ -44,7 +44,7 @@ class CronJobs {
 
     const cronWithCmds = []
     cronText.split(/\r\n|\r|\n/).forEach(line => {
-      const splitedLine = line.split(/\s/)// .map(w => w.trim())
+      const splitedLine = line.split(/\s+/)// .map(w => w.trim())
       // cron syntax like `* * * * *` or `* * * * * *`
       for (const len of [6, 5]) {
         if (splitedLine[len - 1]) {
@@ -99,19 +99,21 @@ class CronJobs {
   }
 }
 
-function parseCronLine(cronTimeStr, line) {
+function validateCronCond(cronTimeStr) {
   try {
     new CronTime(cronTimeStr)
-    const cmd = line.replace(cronTimeStr, '')
-    return cmd.trim()
+    return true
   } catch (e) { }
 }
 
 function lineToCornCmd(line, splitedLine, len, from = 0) {
   const cronTimeStr = splitedLine.slice(from, len).join(' ')
-  const cmd = parseCronLine(cronTimeStr, line)
-  if (cmd) {
-    return [cronTimeStr, cmd]
+  const isCronVaild = validateCronCond(cronTimeStr)
+  if (isCronVaild) {
+    const cmdStartWord = splitedLine[len]
+    const cmdStartIndex = line.indexOf(cmdStartWord)
+    const cmd = line.substring(cmdStartIndex)
+    return [cronTimeStr, cmd.trim()]
   }
 }
 
