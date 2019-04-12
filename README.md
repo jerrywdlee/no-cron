@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/jerrywdlee/no-cron/badge.svg)](https://coveralls.io/github/jerrywdlee/no-cron)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ccff0672287ccfc884b6/maintainability)](https://codeclimate.com/github/jerrywdlee/no-cron/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ccff0672287ccfc884b6/test_coverage)](https://codeclimate.com/github/jerrywdlee/no-cron/test_coverage)
+[![Known Vulnerabilities](https://snyk.io/test/github/jerrywdlee/no-cron/badge.svg?targetFile=package.json)](https://snyk.io/test/github/jerrywdlee/no-cron?targetFile=package.json)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/jerrywdlee/no-cron/issues)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
