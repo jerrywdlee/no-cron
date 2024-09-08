@@ -22,7 +22,7 @@
   "license": "MPL-2.0",
   "dependencies": {
     "commander": "^2.20.0",
-    "cron": "^1.7.0"
+    "cron": "^2.0.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
